@@ -108,7 +108,7 @@ CONTENT_TYPE_TO_RDFLIB_FORMAT = {
 }
 
 
-def parse_accept_header(accept: str) -> list:
+def parse_accept_header(accept: str) -> list[str]:
     """
     Given an accept header string, return a list of
     media types in order of preference.

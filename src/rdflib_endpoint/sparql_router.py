@@ -108,7 +108,7 @@ CONTENT_TYPE_TO_RDFLIB_FORMAT = {
 }
 
 
-def parse_accept_header(accept:str) -> list:
+def parse_accept_header(accept: str) -> list:
     """
     Given an accept header string, return a list of
     media types in order of preference.
@@ -146,6 +146,7 @@ def parse_accept_header(accept:str) -> list:
         preferences.append((parts[0], pref))
     preferences.sort(key=lambda x: -x[1])
     return [pref[0] for pref in preferences]
+
 
 class SparqlRouter(APIRouter):
     """
@@ -280,6 +281,8 @@ class SparqlRouter(APIRouter):
             for mime_type in mime_types:
                 if mime_type in CONTENT_TYPE_TO_RDFLIB_FORMAT:
                     output_mime_type = mime_type
+                    # Use the first matching mime type
+                    break
 
             # Handle mime type for construct queries
             if query_operation == "Construct Query":
